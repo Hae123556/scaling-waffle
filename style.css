@@ -1,0 +1,52 @@
+/* Responsive design pour les écrans de téléphone */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        text-align: center;
+        padding: 10px;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 5px 0;
+        font-size: 16px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px;
+    }
+
+    /* Indication spécifique pour le format téléphone */
+    .mobile-message {
+        display: block;
+        text-align: center;
+        font-size: 16px;
+        color: #333;
+        margin: 10px 0;
+    }
+}
+
+/* Par défaut, cacher le message sur les écrans plus larges */
+.mobile-message {
+    display: none;
+}

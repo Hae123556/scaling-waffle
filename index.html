@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, pink, #ffb6c1, #ffe4e1, #ff69b4);
+            background-size: 400% 400%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            animation: gradientAnimation 10s infinite alternate;
+        }
+
+        .welcome {
+            text-align: center;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .welcome h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome img {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            color: white;
+            margin-top: 10px;
+            animation: slideIn 3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .envelope {
+            position: relative;
+            width: 800px;
+            height: 450px;
+            background: linear-gradient(145deg, #ffb6c1, #ffe4e1);
+            /* Dégradé doux */
+            margin: 20px auto;
+            border: 4px dashed #ff69b4;
+            /* Bordure décorative en pointillés */
+            border-radius: 20px;
+            /* Coins plus arrondis */
+            overflow: hidden;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2), inset 0 4px 6px rgba(255, 255, 255, 0.5);
+            /* Ombres internes et externes */
+            cursor: pointer;
+        }
+
+        .envelope::before,
+        .envelope::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 200px 125px 200px;
+            border-color: transparent transparent #ff69b4 transparent;
+            top: -125px;
+            left: 0;
+            transition: transform 0.5s ease-in-out;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            /* Ombre pour les rabats */
+        }
+
+        .envelope::after {
+            top: auto;
+            bottom: -125px;
+            border-width: 125px 200px 0 200px;
+            border-color: #ff69b4 transparent transparent transparent;
+        }
+
+        .envelope.open::before {
+            transform: translateY(125px) rotateX(180deg);
+        }
+
+        .envelope.open::after {
+            transform: translateY(-125px) rotateX(180deg);
+        }
+
+        .envelope img {
+            width: 100%;
+            /* L'image s'adapte à la nouvelle taille */
+            height: auto;
+            display: none;
+        }
+
+        .envelope.open img {
+            display: block;
+        }
+
+        .password-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .password-container input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .password-container button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background: linear-gradient(145deg, #ff69b4, #ff85a2);
+            /* Dégradé rose */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            /* Boutons arrondis */
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            /* Ombre externe */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            /* Transition pour les effets */
+        }
+
+        .password-container button:hover {
+            background: linear-gradient(145deg, #ff85a2, #ff69b4);
+            /* Inversion du dégradé */
+            transform: scale(1.05);
+            /* Légère mise en avant */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+            /* Ombre plus marquée */
+        }
+
+        .password-container button:active {
+            transform: scale(0.95);
+            /* Réduction lors du clic */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            /* Ombre réduite */
+        }
+
+        .card {
+            position: absolute;
+            width: 95%;
+            /* Augmentation de la largeur */
+            height: 90%;
+            /* Augmentation de la hauteur */
+            background-color: #fff;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            top: 5%;
+            /* Ajustement de la position verticale */
+            left: 2.5%;
+            /* Ajustement de la position horizontale */
+            display: none;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            color: #ff69b4;
+            position: relative;
+            /* Nécessaire pour positionner les fleurs */
+            overflow-y: auto; /* Permet le défilement si le contenu dépasse */
+        }
+
+        .card .flower {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+
+        .card .flower.top-left {
+            top: -10px;
+            left: -10px;
+        }
+
+        .card .flower.top-right {
+            top: -10px;
+            right: -10px;
+        }
+
+        .card .flower.bottom-left {
+            bottom: -10px;
+            left: -10px;
+        }
+
+        .card .flower.bottom-right {
+            bottom: -10px;
+            right: -10px;
+        }
+
+        .card p {
+            white-space: normal; /* Permet au texte de s'afficher sur plusieurs lignes */
+            word-wrap: break-word; /* Coupe les mots longs pour éviter les débordements */
+        }
+
+        .envelope.open .card {
+            display: flex;
+            /* La carte devient visible lorsque l'enveloppe est ouverte */
+        }
+
+        .card img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour un effet fluide */
+            cursor: pointer; /* Change le curseur pour indiquer l'interactivité */
+        }
+
+        .card img:hover {
+            transform: scale(9); /* Agrandit l'image pour qu'elle soit bien visible */
+            z-index: 10; /* Place l'image au-dessus des autres éléments */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Ajoute une ombre plus marquée */
+        }
+
+        .envelope .opening-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .envelope.open .opening-text {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome">
+        <h1>Bienvenue sur mon site !</h1>
+        <div class="envelope" id="envelope">
+            <div class="opening-text">
+                <p style="font-size: 1.2rem; color: #ff69b4; font-weight: bold;">Enter le mots de passe 1234 pour decouvrir!</p>
+            </div>
+            <div class="card">
+                <img src="image/Crystal Flower hard lighting sleek glass….jpeg" class="flower top-left" alt="Fleur décorative">
+                <img src="image/a74d464e-0dfe-4674-8758-4cd6028a2880.jpeg" class="flower top-right" alt="Fleur décorative">
+                <img src="image/Small Fresh Spring Flowers Hd Background Backgrounds _ PSD Free Download - Pikbest.jpeg" class="flower bottom-left" alt="Fleur décorative">
+                <img src="image/Crystal Flower hard lighting sleek glass….jpeg" class="flower bottom-right" alt="Fleur décorative">
+                <p>Voici votre carte spéciale !</p>
+                <p style="font-style: italic; color: #ff69b4; margin-top: 10px;">
+                    🌙✨ En ce mois béni de Ramadan, j'espère que la lumière de la paix et de la sérénité à éclairer ton cœur 🤍. Que chaque jour à été rempli de douceur, d’amour et de bénédictions infinies 🌸💫. Je te souhaite un joyeux fêtes de Ramadan rempli de joie, de partage et de moments précieux avec ceux que tu aimes 🥰🤲.
+
+Ramadan Moubarak ! 🌙💖🌿 Que Dieu accepte les douha de ce magnifique mois qui vient de se terminer 🩶 bonne fête à toi 🌸 et à toute la famille 🦋رمضان مبارك 🪷💞
+                </p>
+                <div style="height: 100%; overflow-y: scroll; margin-top: 10px; display: flex; flex-direction: column; align-items: center;">
+                    <img src="image/Omg friends_.jpeg" alt="Image mignonne" style="width: 90%; height: auto; margin-bottom: 10px;">
+                    <img src="image/cp muslim.jpeg" alt="Image supplémentaire 1" style="width: 90%; height: auto; margin-bottom: 10px;">
+                    <img src="image/Dudu Bubu couple, kawaii bear panda, bubu dudu svg, Cute Lovers holding heart, Instant Download, kawaii clipart gift for her svg png jpg eps.jpg" alt="Image supplémentaire 2" style="width: 90%; height: auto; margin-bottom: 10px;">
+                </div>
+            </div>
+        </div>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Entrez le mot de passe">
+            <button onclick="openEnvelope()">Ouvrir l'enveloppe</button>
+            <button onclick="closeEnvelope()">Fermer l'enveloppe</button>
+        </div>
+        <p>Découvrez des animations et des contenus adorables.</p>
+    </div>
+    <script>
+        function openEnvelope() {
+            const password = document.getElementById('password').value;
+            const envelope = document.getElementById('envelope');
+            const correctPassword = "1234"; // Remplacez par le mot de passe souhaité
+
+            if (password === correctPassword) {
+                envelope.classList.add('open');
+            } else {
+                alert("Mot de passe incorrect !");
+            }
+        }
+
+        function closeEnvelope() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.remove('open');
+        }
+    </script>
+</body>
+
+</html>
